@@ -2,15 +2,64 @@
 <head>
     <title> OpenTok Getting Started </title>
     <link href="css/app.css" rel="stylesheet" type="text/css">
-    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="./js/js.cookie.js"></script>
+
 </head>
+
 <body>
+  <table>
+    <tr>
+      <td><label for="username">username</label></td>
+    </tr>
+    <tr>
+      <td><input id="username"></input></td>
+    </tr>
+  </table>
 
-    <div id="videos">
-        <div id="subscriber"></div>
-        <div id="publisher"></div>
-    </div>
-
-    <script type="text/javascript" src="js/app.js"></script>
 </body>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
+    authDomain: "globetalk-d9e6b.firebaseapp.com",
+    databaseURL: "https://globetalk-d9e6b.firebaseio.com",
+    projectId: "globetalk-d9e6b",
+    storageBucket: "globetalk-d9e6b.appspot.com",
+    messagingSenderId: "42178570730"
+  };
+  firebase.initializeApp(config);
+
+	var db = firebase.database();
+  var usersRef = db.ref('users');
+
+  $("#username").keyup(function(event) {
+    if (event.keyCode === 13) {
+      username = $("#username").val();
+      // console.log(username);
+        // ask for token
+        usersRef.orderByChild('username').equalTo(username).on("value", function(snapshot) {
+          var vals = snapshot.val();
+          //console.log(vals);
+          for( item in vals){
+            token = vals[item]["last_token"]
+            console.log(token);
+            Cookies.set('globetalk_token', token, { expires: 7 });
+
+          }
+
+          // snapshot.forEach(function(data) {
+          //   console.log(data.key);
+          // });
+        });
+        // set user active
+    }
+  });
+
+</script>
+
 </html>
