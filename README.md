@@ -13,7 +13,7 @@ Android Extras:
 - [ ] request for session
 
 Web MVP:
-- [ ] teacher create session
+- [X] teacher create session
 - [ ] student create token from joining session
 - [ ] improve login page
 - [ ] teacher listed as active when logged in
