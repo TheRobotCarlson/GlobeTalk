@@ -26,6 +26,8 @@ function initializeSession(token) {
   });
   // Create a publisher
   var publisher = OT.initPublisher('publisher', {
+    name: Cookies.get("globetalk_username"),
+    style: { nameDisplayMode: “on” }
     insertMode: 'append',
     width: '100%',
     height: '100%'
