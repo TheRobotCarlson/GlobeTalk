@@ -13,15 +13,16 @@ Android Extras:
 - [ ] request for session
 
 Web MVP:
-- [X] teacher create session
-- [ ] student create token from joining session
+- [x] teacher create session
+- [x] student create token from joining session
 - [ ] improve login page
+- [ ] setup menu for student/teacher
 - [ ] teacher listed as active when logged in
 - [ ] audio only-feed
 - [ ] muted/drop in chats
 - [ ] more than one student
-- [ ] menu during video chat
-- [ ] setup menu for student/teacher
+- [x] menu during video chat
+
 
 Web Extras:
 - [ ] archived audio/video replay

@@ -75,7 +75,7 @@ var activeRef = db.ref('active_users');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <img class="navbar-brand" src="./images/ic_nature_people_black_24dp_2x.png"/>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -91,7 +91,7 @@ var activeRef = db.ref('active_users');
   </div>
 </nav>
 
-  <div class="col-sm-1 sidenav panel panel-primary">
+  <div class="col-sm-2 sidenav panel panel-primary">
     <p><a href="#">English</a></p>
     <p><a href="#">Arabic</a></p>
     <p><a href="#">Link</a></p>
@@ -164,20 +164,21 @@ var activeRef = db.ref('active_users');
 </div><br><br>
 
 <footer class="container-fluid text-center">
-  <p>Online Store Copyright</p>
-  <form class="form-inline">Get deals:
-    <input type="email" class="form-control" size="50" placeholder="Email Address">
-    <button type="button" class="btn btn-danger">Sign Up</button>
-  </form>
+  <p>Work by Brian Carlson, Irsyad Hanif, Rishab Iyer, and Abhilaash Velamti</p>
 </footer>
 
 </body>
 
 <script>
 
-function populate_item(html_element, language_pair, sub_item){
+var room_names = []
+
+function populate_item(html_element, language_pair, sub_item, save_rooms){
   teacher = sub_item["teacher"]
   session_id = sub_item["session_id"]
+  if(save_rooms){
+        room_names.push(session_id)
+  }
   // user_max = sub_item["user_max"]
   // user_num = sub_item["user_num"]
   img_thumbnail = sub_item["img"]
@@ -186,7 +187,7 @@ function populate_item(html_element, language_pair, sub_item){
 
 
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
-  insert_str += "Teacher: " + teacher
+  insert_str += "Room name: " + session_id
   insert_str += '</div><a href="/vid-chat-web/chat.html?session_id='
   insert_str += session_id + "#videos"
   insert_str += '"><div class="panel-body"><img src="'
@@ -210,7 +211,7 @@ var language_pair = language1 + "/" + language2;
 
 sessionsRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
   var sub_item = snapshot.val();
-  populate_item("#top-row-insert", language_pair, sub_item);
+  populate_item("#top-row-insert", language_pair, sub_item, true);
 });
 
 var language1 = $("#language3").val();
@@ -219,7 +220,7 @@ var language_pair = language1 + "/" + language2;
 
 archiveRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
   var sub_item = snapshot.val();
-  populate_item("#bottom-row-insert", language_pair, sub_item);
+  populate_item("#bottom-row-insert", language_pair, sub_item, false);
 });
 
 var is_teacher = Cookies.get("globetalk_teacher") == "true";
@@ -227,7 +228,7 @@ var is_teacher = Cookies.get("globetalk_teacher") == "true";
 if(is_teacher){
 
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
-  insert_str += 'Start a session.'
+  insert_str += '<input type="text" placeholder="Name your session" class="flexdatalist" data-min-length="1" multiple="multiple" list="sessions_list" name="session" id="session_name">'
   insert_str += '</div><div class="panel-body"><img id="new-session" src="'
   insert_str += 'https://placehold.it/150x80?text=%2B'
   insert_str += '" class="img-responsive" style="width:100%" alt="Image"></div><div class="panel-footer">Set topics: '
@@ -241,6 +242,10 @@ if(is_teacher){
     <option value="culture">culture</option>
     <option value="sports">sports</option>
     <option value="jokes">jokes</option>
+</datalist>`
+
+insert_str += `<datalist id="sessions_list">
+
 </datalist>`
 
 $("#top-row-insert").prepend(insert_str);
