@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>GlobeTalk</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -232,7 +232,7 @@ if(is_teacher){
   insert_str += '</div><div class="panel-body"><img id="new-session" src="'
   insert_str += 'https://placehold.it/150x80?text=IMAGE'
   insert_str += '" class="img-responsive" style="width:100%" alt="Image"></div><div class="panel-footer">Set topics: '
-  insert_str += '<input type="text" placeholder="Set topics" class="flexdatalist" data-min-length="1" multiple="multiple" list="tag_list" name="tags">'
+  insert_str += '<input type="text" placeholder="Set topics" class="flexdatalist" data-min-length="1" multiple="multiple" list="tag_list" name="tags" id="tags">'
   insert_str += '</div></div></div>';
 
   insert_str += `<datalist id="tag_list">
@@ -252,7 +252,7 @@ $("#new-session").on( "click", function(event) {
     token = data["token"];
     Cookies.set("globetalk_token", token);
 
-    tags = $("tags").val();
+    tags = $("#tags").val();
     var tag_arr = tags.split(',');
 
     var language1 = $("#language1").val();
