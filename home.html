@@ -188,7 +188,7 @@ function populate_item(html_element, language_pair, sub_item, save_rooms){
 
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
   insert_str += "Room name: " + session_id
-  insert_str += '</div><a href="/vid-chat-web/chat.html?session_id='
+  insert_str += '</div><a href="//GlobeTalk/chat.html?session_id='
   insert_str += session_id + "#videos"
   insert_str += '"><div class="panel-body"><img src="'
   insert_str += img_thumbnail
@@ -281,7 +281,7 @@ $("#new-session").on( "click", function(event) {
 
     sessionsRef.push(json_entry);
 
-    new_url = "/vid-chat-web/chat.html?session_id=" + session_id + "#videos";
+    new_url = "/GlobeTalk/chat.html?session_id=" + session_id + "#videos";
     document.location.href = new_url;
   });
 });
