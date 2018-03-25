@@ -4,7 +4,7 @@ General MVP:
 
 
 Android MVP:
-- [ ] video streaming
+- [x] video streaming
 - [ ] saved items
 
 Android Extras:
@@ -15,7 +15,7 @@ Android Extras:
 Web MVP:
 - [x] teacher create session
 - [x] student create token from joining session
-- [ ] improve login page
+- [x] improve login page
 - [ ] setup menu for student/teacher
 - [ ] teacher listed as active when logged in
 - [ ] audio only-feed
