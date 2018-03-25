@@ -228,7 +228,7 @@ var is_teacher = Cookies.get("globetalk_teacher") == "true";
 if(is_teacher){
 
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
-  insert_str += '<input type="text" placeholder="Name your session" class="flexdatalist" data-min-length="1" multiple="multiple" list="sessions_list" name="session" id="session_name">'
+  insert_str += '<input type="text" placeholder="Name your session" class="flexdatalist" data-min-length="1" multiple="multiple" list="sessions_list" name="session" id="session-name">'
   insert_str += '</div><div class="panel-body"><img id="new-session" src="'
   insert_str += 'https://placehold.it/150x80?text=%2B'
   insert_str += '" class="img-responsive" style="width:100%" alt="Image"></div><div class="panel-footer">Set topics: '
@@ -253,7 +253,7 @@ $("#new-session").on( "click", function(event) {
       teacher_username = Cookies.get("globetalk_username");
   $.get("https://imigrant.herokuapp.com/room/" + teacher_username, function(data){
 
-    session_id = teacher_username;
+    session_id = $("#session-name").val();
     token = data["token"];
     Cookies.set("globetalk_token", token);
 

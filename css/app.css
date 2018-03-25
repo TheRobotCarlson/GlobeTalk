@@ -3,6 +3,9 @@ body, html {
     height: 100%;
 }
 
+p {
+  font-size: large;
+}
 #videos {
     position: relative;
     width: 100%;
@@ -30,7 +33,6 @@ body, html {
     border: 3px solid white;
     border-radius: 3px;
 }
-
 
 
 .navbar-fixed-top .nav {

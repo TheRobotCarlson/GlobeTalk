@@ -49,7 +49,7 @@
 				<div class="form-horizontal" >
 				  <input id="username" class="form-control login" type="text" name="username" placeholder="Username.." />
 				  <input id="password" class="form-control login" type="password" name="password" placeholder="Password.."/>
-				  <input class="btn btn-primary" type="submit" name="submit" value="login" />
+				  <input id="login-button" class="btn btn-primary" type="submit" name="submit" value="login" />
 				</div>
 				</div>
 			</li>
@@ -75,8 +75,7 @@
           <h1>Welcome</h1>
                 <p>A big problem for refugees and immigrants is learning the language and culture of the places they escape to. Many language apps work solely on text or audio playbacks without a real person on the other side assisting the journey of learning a new language. There are services for video calls with tutors and teachers, but they're all paid services, very impersonal, and largely inefficient. We want to empower refugees and immigrants to take their language education into their own hands and offer individuals an easy way to help empower others. This is an equalizing factor when it comes to starting a new life in another country. Building an emotional support group provides emotional security to better help stabilize individuals in their new lives.</p>
                 <hr>
-                <h3>Test</h3>
-                <p>Lorem ipsum...</p>
+
         </div>
       </div>
     </div>
@@ -106,6 +105,24 @@
 
 	var db = firebase.database();
   var usersRef = db.ref('users');
+
+  $("#login-button").on( "click", function(event) {
+    username = $("#username").val();
+
+    if(username != ""){
+      usersRef.orderByChild('username').equalTo(username).on("value", function(snapshot) {
+
+        var vals = snapshot.val();
+        //console.log(vals);
+        for( item in vals){
+          teacher = vals[item]["teacher"]
+          Cookies.set('globetalk_teacher', teacher, {expires: 7});
+          Cookies.set('globetalk_username', username, {expires: 7});
+          document.location.href = "/GlobeTalk/home";
+        }
+      });
+    }
+});
 
   $("#username").keyup(function(event) {
     if (event.keyCode === 13) {
