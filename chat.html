@@ -86,19 +86,20 @@
 
     $.get("https://imigrant.herokuapp.com/room/" + session_name, function(data){
 
-      sessionId = data["sessionId"];
-      token = data["token"];
-      apiKey = data["apiKey"];
-      Cookies.set("globetalk_apiKey", apiKey);
-      Cookies.set("globetalk_token", token);
-      Cookies.set("globetalk_session_id", session_id);
+      var sessionId = data["sessionId"];
+      var token = data["token"];
+      var apiKey = data["apiKey"];
+      initializeSession(token);
+      // Cookies.set("globetalk_apiKey", apiKey);
+      // Cookies.set("globetalk_token", token);
+      // Cookies.set("globetalk_session_id", session_id);
     });
 
-    var token = Cookies.get('globetalk_token');
-    var sessionId = Cookies.get('globetalk_session_id');
-    var apiKey = Cookies.get("globetalk_apiKey");
-    
-    initializeSession(token);
+    // var token = Cookies.get('globetalk_token');
+    // var sessionId = Cookies.get('globetalk_session_id');
+    // var apiKey = Cookies.get("globetalk_apiKey");
+
+
     </script>
 </body>
 </html>
