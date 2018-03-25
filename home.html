@@ -37,9 +37,20 @@
 
 <script>
 
+var config = {
+  apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
+  authDomain: "globetalk-d9e6b.firebaseapp.com",
+  databaseURL: "https://globetalk-d9e6b.firebaseio.com",
+  projectId: "globetalk-d9e6b",
+  storageBucket: "globetalk-d9e6b.appspot.com",
+  messagingSenderId: "42178570730"
+};
+firebase.initializeApp(config);
+
 var db = firebase.database();
 var usersRef = db.ref('users');
 var sessionsRef = db.ref('active_sessions');
+var archiveRef = db.ref('archiveRef');
 var archiveRef = db.ref('past_sessions');
 var activeRef = db.ref('active_users');
 
@@ -193,20 +204,6 @@ function populate_item(html_element, language_pair, sub_item){
 
 }
 
-var config = {
-  apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
-  authDomain: "globetalk-d9e6b.firebaseapp.com",
-  databaseURL: "https://globetalk-d9e6b.firebaseio.com",
-  projectId: "globetalk-d9e6b",
-  storageBucket: "globetalk-d9e6b.appspot.com",
-  messagingSenderId: "42178570730"
-};
-firebase.initializeApp(config);
-
-var db = firebase.database();
-var usersRef = db.ref('users');
-var sessionsRef = db.ref('active_sessions');
-var archiveRef = db.ref('archiveRef');
 
 // todo: rearrange to prevent reversed options
 var language1 = $("#language1").val();
