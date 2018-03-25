@@ -222,7 +222,7 @@ archiveRef.orderByChild('language_pair').equalTo(language_pair).on("child_added"
   var sub_item = snapshot.val();
 
   teacher = sub_item["teacher"]
-  archive_url = sub_item["archive_url"]
+  archive_url = sub_item["archive_link"]
 
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
   insert_str += "Room name: " + session_id
