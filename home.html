@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="css/app.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="./js/js.cookie.js"></script>
+  <script src="./js/jquery.localize.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */
     .navbar {
@@ -26,12 +32,13 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>GlobeTalk</h1>
-    <p>Helping immigrants and refugees learn languages one chat at a time.</p>
+    <h1 data-localize="header.title">GlobeTalk</h1>
+    <p data-localize="header.subtitle">Helping immigrants and refugees learn languages one chat at a time.</p>
   </div>
 </div>
 
@@ -47,15 +54,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Deals</a></li>
-        <li><a href="#">Stores</a></li>
-        <li><a href="#">Contact</a></li>
+        <li class="active"><a href="#" data-localize="header.home">Home</a></li>
+        <li><a href="#" data-localize="header.subtitle">Favorites</a></li>
+        <li><a href="#">Teachers</a></li>
+        <li><a href="#">Schedule a Session</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
       </ul>
     </div>
   </div>
@@ -63,39 +68,72 @@
 
   <div class="col-sm-1 sidenav panel panel-primary">
     <p><a href="#">English</a></p>
-    <p><a href="#">Link</a></p>
+    <p><a href="#">Arabic</a></p>
     <p><a href="#">Link</a></p>
   </div>
 
-<div class="container">
+<div id="top-row" class="container">
+<label for="top-row">
+  <h2>I want to
+  <select id="chat-type">
+    <option value="video-chat">video chat</option>
+    <option value="voice-chat">voice chat</option>
+    <option value="watch-stream">watch a live stream</option>
+    <option value="listen-audio">listen to a live stream</option>
+  </select>
 
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel panel-danger">
-        <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel panel-success">
-        <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-      </div>
-    </div>
+  in
+
+  <select id="language1">
+    <option value="English">English</option>
+    <option value="Arabic">Arabic</option>
+    <option value="Spanish">Spanish</option>
+  </select>
+
+  and
+
+  <select id="language2">
+    <option value="Arabic">Arabic</option>
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+  </select>
+  .
+
+  </h2>
+</label>
+  <div  id="top-row-insert" class="row">
+
   </div>
 </div><br>
 
-<div class="container">
-  <div class="row">
+<div id="bottom-row" class="container">
+  <label for="top-row">
+    <h2>I want to see my archived
+    <select id="archive-type">
+      <option value="video-chat">video chat</option>
+      <option value="voice-chat">voice chat</option>
+    </select>
+
+    in
+
+    <select id="language1">
+      <option value="English">English</option>
+      <option value="Arabic">Arabic</option>
+      <option value="Spanish">Spanish</option>
+    </select>
+
+    and
+
+    <select id="language2">
+      <option value="Arabic">Arabic</option>
+      <option value="English">English</option>
+      <option value="Spanish">Spanish</option>
+    </select>
+    .
+
+    </h2>
+  </label>
+  <div id="bottom-row-insert" class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
@@ -129,4 +167,55 @@
 </footer>
 
 </body>
+
+<script>
+var config = {
+  apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
+  authDomain: "globetalk-d9e6b.firebaseapp.com",
+  databaseURL: "https://globetalk-d9e6b.firebaseio.com",
+  projectId: "globetalk-d9e6b",
+  storageBucket: "globetalk-d9e6b.appspot.com",
+  messagingSenderId: "42178570730"
+};
+firebase.initializeApp(config);
+
+var db = firebase.database();
+var usersRef = db.ref('users');
+var sessionsRef = db.ref('active_sessions');
+
+// todo: rearrange to prevent reversed options
+var language1 = $("#language1").val()
+var language2 = $("#language2").val()
+var language_pair = language1 + "/" + language2
+
+sessionsRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
+  var sub_item = snapshot.val();
+
+  teacher = sub_item["teacher"]
+  session_id = sub_item["session_id"]
+  user_max = sub_item["user_max"]
+  user_num = sub_item["user_num"]
+  img_thumbnail = sub_item["img"]
+  users = sub_item["users"]
+  tags = sub_item["tags"]
+
+  insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
+  insert_str += "Teacher: " + teacher
+  insert_str += '</div><a href="/chat.html?session_id='
+  insert_str += session_id
+  insert_str += '"><div class="panel-body"><img src="'
+  insert_str += img_thumbnail
+  insert_str += '" class="img-responsive" style="width:100%" alt="Image"></a></div><div class="panel-footer">Tags: '
+
+  for(tag in tags){
+      insert_str += tags[tag] + " ";
+  }
+
+  insert_str += '</div></div></div>';
+
+
+  $("#top-row-insert").prepend(insert_str)
+});
+
+</script>
 </html>
