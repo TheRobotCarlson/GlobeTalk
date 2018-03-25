@@ -230,7 +230,7 @@ if(is_teacher){
   insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
   insert_str += 'Start a session.'
   insert_str += '</div><div class="panel-body"><img id="new-session" src="'
-  insert_str += 'https://placehold.it/150x80?text=IMAGE'
+  insert_str += 'https://placehold.it/150x80?text=%2B'
   insert_str += '" class="img-responsive" style="width:100%" alt="Image"></div><div class="panel-footer">Set topics: '
   insert_str += '<input type="text" placeholder="Set topics" class="flexdatalist" data-min-length="1" multiple="multiple" list="tag_list" name="tags" id="tags">'
   insert_str += '</div></div></div>';
@@ -262,7 +262,7 @@ $("#new-session").on( "click", function(event) {
     teacher_username = Cookies.get("globetalk_username");
     user_max = 5
     user_num = 0
-    img_thumbnail = 'https://placehold.it/150x80?text=%2B'
+    img_thumbnail = 'https://placehold.it/150x80?text=IMAGE'
 
     json_entry = {
       "teacher": teacher_username,
