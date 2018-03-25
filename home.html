@@ -203,7 +203,6 @@ function populate_item(html_element, language_pair, sub_item){
 
 }
 
-
 // todo: rearrange to prevent reversed options
 var language1 = $("#language1").val();
 var language2 = $("#language2").val();
@@ -246,9 +245,10 @@ if(is_teacher){
 
 $("#top-row-insert").prepend(insert_str);
 $("#new-session").on( "click", function(event) {
-  $.get("https://imigrant.herokuapp.com/session", function(data){
+      teacher_username = Cookies.get("globetalk_username");
+  $.get("https://imigrant.herokuapp.com/room/" + teacher_username, function(data){
 
-    session_id = data["sessionId"];
+    session_id = teacher_username;
     token = data["token"];
     Cookies.set("globetalk_token", token);
 
@@ -259,7 +259,7 @@ $("#new-session").on( "click", function(event) {
     var language2 = $("#language2").val();
     var language_pair = language1 + "/" + language2;
 
-    teacher_username = Cookies.get("globetalk_username");
+
     user_max = 5
     user_num = 0
     img_thumbnail = 'https://placehold.it/150x80?text=IMAGE'

@@ -82,8 +82,19 @@
           while (match = search.exec(query))
              urlParams[decode(match[1])] = decode(match[2]);
       })();
-    var sessionId = urlParams["session_id"];
+    var session_name = urlParams["session_id"];
+
+    $.get("https://imigrant.herokuapp.com/room/" + session_name, function(data){
+
+      session_id = data["sessionId"];
+      token = data["token"];
+      Cookies.set("globetalk_token", token);
+      Cookies.set("globetalk_session_id", session_id);
+    });
+
     var token = Cookies.get('globetalk_token');
+    var sessionId = Cookies.get('globetalk_session_id');
+
     initializeSession(token);
     </script>
 </body>
