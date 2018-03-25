@@ -276,7 +276,7 @@ $("#new-session").on( "click", function(event) {
 
     sessionsRef.push(json_entry);
 
-    new_url = "/vid-chat-web/chat.html?session_id=" + session_id;
+    new_url = "/vid-chat-web/chat.html#videos?session_id=" + session_id;
     document.location.href = new_url;
   });
 });

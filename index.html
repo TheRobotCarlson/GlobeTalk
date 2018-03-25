@@ -54,10 +54,6 @@
           //console.log(vals);
           for( item in vals){
             teacher = vals[item]["teacher"]
-            token = vals[item]["last_token"]
-            console.log(token);
-
-            Cookies.set('globetalk_token', token, { expires: 7 });
             Cookies.set('globetalk_teacher', teacher, {expires: 7});
             Cookies.set('globetalk_username', username, {expires: 7});
             document.location.href = "/vid-chat-web/home";
