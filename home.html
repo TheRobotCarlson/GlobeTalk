@@ -49,7 +49,6 @@ firebase.initializeApp(config);
 var db = firebase.database();
 var usersRef = db.ref('users');
 var sessionsRef = db.ref('active_sessions');
-var archiveRef = db.ref('archiveRef');
 var archiveRef = db.ref('past_sessions');
 var activeRef = db.ref('active_users');
 
@@ -221,44 +220,34 @@ var language_pair = language1 + "/" + language2;
 archiveRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
   var sub_item = snapshot.val();
 
-  teacher = sub_item["teacher"]
-  archive_url = sub_item["archive_link"]
+  var teacher = sub_item["teacher"]
+  var archive_id = sub_item["archive_id"]
+  var tags = sub_item["tags"]
+  $.get("https://imigrant.herokuapp.com/archive/" + archive_id + "/view", function(data){
 
-  insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
-  insert_str += "Room name: " + session_id
-  insert_str += '</div><div class="panel-body"><video src='
-  insert_str += archive_url
-  insert_str += ' width="320" height="240" controls="controls"></video>'
-  insert_str += ' </div><div class="panel-footer">Topics: '
+    archive_url = data;
+    insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
+    insert_str += "Room name: " + session_id
+    insert_str += '</div><div class="panel-body"><video src='
+    insert_str += archive_url
+    insert_str += ' width="320" height="240" controls="controls"></video>'
+    insert_str += ' </div><div class="panel-footer">Topics: '
 
-  for(tag in tags){
-      insert_str += tags[tag] + " ";
-  }
+    for(tag in tags){
+        insert_str += tags[tag] + " ";
+    }
 
-  insert_str += '</div></div></div>';
+    insert_str += '</div></div></div>';
 
-  $("#bottom-row-insert").append(insert_str);
+    $("#bottom-row-insert").append(insert_str);
+  });
+
+
   // populate_item("#bottom-row-insert", language_pair, sub_item, false);
 });
 //
-// $.get("https://imigrant.herokuapp.com/archive", function(data){
-//     jQuery.each(data, function(i, val) {
-//         $.get("https://imigrant.herokuapp.com/archive/" + val["id"] + "/view", function(data){
-//             var x = document.createElement("VIDEO");
-//
-//             if (x.canPlayType("video/mp4")) {
-//                 x.setAttribute("src",data);
-//             } else {
-//
-//             }
-//
-//             x.setAttribute("width", "320");
-//             x.setAttribute("height", "240");
-//             x.setAttribute("controls", "controls");
-//             document.body.appendChild(x);
-//         });
-//     });
-// });
+
+
 
 var is_teacher = Cookies.get("globetalk_teacher") == "true";
 
