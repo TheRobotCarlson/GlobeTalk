@@ -253,7 +253,7 @@ $("#new-session").on( "click", function(event) {
     Cookies.set("globetalk_token", token);
 
     tags = $("tags").val();
-    var tag_arr = data.split('/');
+    var tag_arr = tags.split(',');
 
     var language1 = $("#language1").val();
     var language2 = $("#language2").val();
