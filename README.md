@@ -1,6 +1,6 @@
 
 General MVP:
-- [ ] devpost information
+- [x] devpost information
 
 
 Android MVP:
@@ -17,15 +17,17 @@ Web MVP:
 - [x] student create token from joining session
 - [x] improve login page
 - [ ] setup menu for student/teacher
+
 - [ ] teacher listed as active when logged in
 - [ ] audio only-feed
 - [ ] muted/drop in chats
-- [ ] more than one student
+- [x] more than one student
 - [x] menu during video chat
+- [ ] favorites
 
 
 Web Extras:
-- [ ] archived audio/video replay
+- [x] archived audio/video replay
 - [ ] live text chat during videos
 - [ ] session requests
 - [ ] favorite teachers

@@ -1,4 +1,4 @@
-var apiKey = "46086632";
+
 // var sessionId = "1_MX40NjA4NjYzMn5-MTUyMTkxNDk0MTM4OX5EWU03bmFEMnFWSTJ0NVZpNElKbjBaOUx-UH4";
 // var token = "T1==cGFydG5lcl9pZD00NjA4NjYzMiZzaWc9ZTgxMWQ0N2EyOTc2MGU4NmQwMzUyNDI4ZTJjYjEzYWVlOTk1OGEyNTpzZXNzaW9uX2lkPTFfTVg0ME5qQTROall6TW41LU1UVXlNVGt4TkRrME1UTTRPWDVFV1UwM2JtRkVNbkZXU1RKME5WWnBORWxLYmpCYU9VeC1VSDQmY3JlYXRlX3RpbWU9MTUyMTkxNTQ4MCZub25jZT0wLjc2OTQzOTI3NzgxNjYyMjYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUyMjAwMTg3OSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
@@ -14,7 +14,7 @@ function handleError(error) {
 }
 
 function initializeSession(token) {
-  var session = OT.initSession(apiKey, sessionId);
+  var session = OT.initSession("46086632", sessionId);
 
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
