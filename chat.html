@@ -85,7 +85,7 @@
     var session_name = urlParams["session_id"];
 
     $.get("https://imigrant.herokuapp.com/room/" + session_name, function(data){
-      var sessionId = data["sessionId"];
+      var session_id = data["sessionId"];
       var token = data["token"];
       // var apiKey = data["apiKey"];
       // Cookies.set("globetalk_apiKey", apiKey);
