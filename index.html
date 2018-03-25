@@ -41,8 +41,10 @@
     if (event.keyCode === 13) {
       username = $("#username").val();
       // console.log(username);
+
         // ask for token
         usersRef.orderByChild('username').equalTo(username).on("value", function(snapshot) {
+
           var vals = snapshot.val();
           //console.log(vals);
           for( item in vals){
