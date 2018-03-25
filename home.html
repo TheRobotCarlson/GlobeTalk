@@ -224,7 +224,7 @@ archiveRef.orderByChild('language_pair').equalTo(language_pair).on("child_added"
   populate_item("#bottom-row-insert", language_pair, sub_item);
 });
 
-var is_teacher = Cookies.get("globetalk_teacher");
+var is_teacher = Cookies.get("globetalk_teacher") == "true";
 
 if(is_teacher){
 
