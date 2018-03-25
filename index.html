@@ -23,6 +23,10 @@
 </body>
 
 <script>
+
+// $.get( "ajax/test.html", function( data ) {
+//   $( ".result" ).html( data );
+// });
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
@@ -40,6 +44,7 @@
   $("#username").keyup(function(event) {
     if (event.keyCode === 13) {
       username = $("#username").val();
+
       // console.log(username);
 
         // ask for token
@@ -48,10 +53,13 @@
           var vals = snapshot.val();
           //console.log(vals);
           for( item in vals){
+            teacher = vals[item]["teacher"]
             token = vals[item]["last_token"]
             console.log(token);
 
             Cookies.set('globetalk_token', token, { expires: 7 });
+            Cookies.set('globetalk_teacher', teacher, {expires: 7});
+            Cookies.set('globetalk_username', username, {expires: 7});
             document.location.href = "/vid-chat-web/home";
           }
 
