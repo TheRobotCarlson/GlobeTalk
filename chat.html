@@ -84,20 +84,23 @@
       })();
     var session_name = urlParams["session_id"];
 
-    $.get("https://imigrant.herokuapp.com/room/" + session_name, function(data){
-
-      var sessionId = data["sessionId"];
-      var token = data["token"];
-      var apiKey = data["apiKey"];
-      initializeSession(token);
-      // Cookies.set("globetalk_apiKey", apiKey);
-      // Cookies.set("globetalk_token", token);
-      // Cookies.set("globetalk_session_id", session_id);
-    });
-
+    // $.get("https://imigrant.herokuapp.com/room/" + session_name, function(data){
+    //   var sessionId = data["sessionId"];
+    //   var token = data["token"];
+    //   var apiKey = data["apiKey"];
+    //
+    //   Cookies.set("globetalk_apiKey", apiKey);
+    //   Cookies.set("globetalk_token", token);
+    //   Cookies.set("globetalk_session_id", session_id);
+    // });
     // var token = Cookies.get('globetalk_token');
+    var apiKey = "46086632";
+    token = "T1==cGFydG5lcl9pZD00NjA4NjYzMiZzaWc9ZTgxMWQ0N2EyOTc2MGU4NmQwMzUyNDI4ZTJjYjEzYWVlOTk1OGEyNTpzZXNzaW9uX2lkPTFfTVg0ME5qQTROall6TW41LU1UVXlNVGt4TkRrME1UTTRPWDVFV1UwM2JtRkVNbkZXU1RKME5WWnBORWxLYmpCYU9VeC1VSDQmY3JlYXRlX3RpbWU9MTUyMTkxNTQ4MCZub25jZT0wLjc2OTQzOTI3NzgxNjYyMjYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUyMjAwMTg3OSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+    sessionId = urlParams["session_id"];
     // var sessionId = Cookies.get('globetalk_session_id');
-    // var apiKey = Cookies.get("globetalk_apiKey");
+    var apiKey = Cookies.get("globetalk_apiKey");
+
+    initializeSession(token);
 
 
     </script>
