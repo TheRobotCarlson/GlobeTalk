@@ -33,6 +33,28 @@
   </style>
 </head>
 
+<script>
+var config = {
+  apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
+  authDomain: "globetalk-d9e6b.firebaseapp.com",
+  databaseURL: "https://globetalk-d9e6b.firebaseio.com",
+  projectId: "globetalk-d9e6b",
+  storageBucket: "globetalk-d9e6b.appspot.com",
+  messagingSenderId: "42178570730"
+};
+firebase.initializeApp(config);
+
+var db = firebase.database();
+var usersRef = db.ref('users');
+var sessionsRef = db.ref('active_sessions');
+var archiveRef = db.ref('past_sessions');
+var activeRef = db.ref('active_users');
+
+  window.onbeforeunload=function(e){
+
+  };
+</script>
+
 <body>
 
 <div class="jumbotron">
@@ -116,7 +138,7 @@
 
     in
 
-    <select id="language1">
+    <select id="language3">
       <option value="English">English</option>
       <option value="Arabic">Arabic</option>
       <option value="Spanish">Spanish</option>
@@ -124,7 +146,7 @@
 
     and
 
-    <select id="language2">
+    <select id="language4">
       <option value="Arabic">Arabic</option>
       <option value="English">English</option>
       <option value="Spanish">Spanish</option>
@@ -169,6 +191,35 @@
 </body>
 
 <script>
+
+function populate_item(html_element, language_pair, sub_item){
+  teacher = sub_item["teacher"]
+  session_id = sub_item["session_id"]
+  // user_max = sub_item["user_max"]
+  // user_num = sub_item["user_num"]
+  img_thumbnail = sub_item["img"]
+  users = sub_item["users"]
+  tags = sub_item["tags"]
+
+
+  insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
+  insert_str += "Teacher: " + teacher
+  insert_str += '</div><a href="/vid-chat-web/chat.html?session_id='
+  insert_str += session_id
+  insert_str += '"><div class="panel-body"><img src="'
+  insert_str += img_thumbnail
+  insert_str += '" class="img-responsive" style="width:100%" alt="Image"></a></div><div class="panel-footer">Topics: '
+
+  for(tag in tags){
+      insert_str += tags[tag] + " ";
+  }
+
+  insert_str += '</div></div></div>';
+
+  $(html_element).prepend(insert_str)
+
+}
+
 var config = {
   apiKey: "AIzaSyD84RAySxzyaJ8N2wN8RdY1LxZLXfY6O2Q",
   authDomain: "globetalk-d9e6b.firebaseapp.com",
@@ -182,39 +233,25 @@ firebase.initializeApp(config);
 var db = firebase.database();
 var usersRef = db.ref('users');
 var sessionsRef = db.ref('active_sessions');
+var archiveRef = db.ref('archiveRef');
 
 // todo: rearrange to prevent reversed options
-var language1 = $("#language1").val()
-var language2 = $("#language2").val()
-var language_pair = language1 + "/" + language2
+var language1 = $("#language1").val();
+var language2 = $("#language2").val();
+var language_pair = language1 + "/" + language2;
 
 sessionsRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
   var sub_item = snapshot.val();
+  populate_item("#top-row-insert", language_pair, sub_item);
+});
 
-  teacher = sub_item["teacher"]
-  session_id = sub_item["session_id"]
-  user_max = sub_item["user_max"]
-  user_num = sub_item["user_num"]
-  img_thumbnail = sub_item["img"]
-  users = sub_item["users"]
-  tags = sub_item["tags"]
+var language1 = $("#language3").val();
+var language2 = $("#language4").val();
+var language_pair = language1 + "/" + language2;
 
-  insert_str = '<div class="col-sm-4"><div class="panel panel-danger"><div class="panel-heading">'
-  insert_str += "Teacher: " + teacher
-  insert_str += '</div><a href="/vid-chat-web/chat.html?session_id='
-  insert_str += session_id
-  insert_str += '"><div class="panel-body"><img src="'
-  insert_str += img_thumbnail
-  insert_str += '" class="img-responsive" style="width:100%" alt="Image"></a></div><div class="panel-footer">Tags: '
-
-  for(tag in tags){
-      insert_str += tags[tag] + " ";
-  }
-
-  insert_str += '</div></div></div>';
-
-
-  $("#top-row-insert").prepend(insert_str)
+archiveRef.orderByChild('language_pair').equalTo(language_pair).on("child_added", function(snapshot) {
+  var sub_item = snapshot.val();
+  populate_item("#bottom-row-insert", language_pair, sub_item);
 });
 
 </script>

@@ -48,6 +48,7 @@
           for( item in vals){
             token = vals[item]["last_token"]
             console.log(token);
+
             Cookies.set('globetalk_token', token, { expires: 7 });
             document.location.href = "/vid-chat-web/home";
           }
